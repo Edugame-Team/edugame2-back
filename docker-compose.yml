@@ -1,0 +1,25 @@
+version: "3"
+
+services:
+  db:
+    image: postgres
+    container_name: edugame_db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: edugame
+    ports:
+      - "5432:5432"
+    volumes:
+      - database-data:/var/lib/postgresql/data/
+  api:
+    container_name: edugame_api
+    image: edugame_api
+    build: .
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+
+volumes:
+  database-data:

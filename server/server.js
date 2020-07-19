@@ -84,7 +84,10 @@ class Server {
                                 console.log(res);
                                 if (res === null || res === undefined) {
                                     // Crée de fausses données
-                                    await createSeeds;
+                                    console.log(`Création data`);
+                                    await createSeeds.createSeeds();
+                                } else {
+                                    console.log('ok')
                                 }
                             }).catch(err => {
                                 console.log(err);
@@ -95,6 +98,8 @@ class Server {
                     }
                 });
         } catch (err) {
+            await dbConnection.sync({ force: true });
+            await createSeeds.createSeeds();
             console.log(`Error while checking if tables exist : ${err}`);
         }
     }

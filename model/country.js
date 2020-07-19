@@ -25,7 +25,7 @@ Country.init({
     defaultScope: {
         attributes: { exclude: ['createdAt', 'updatedAt'] }
     },
-    indexes: [{ unique: true, fields: ['country_id', 'country_trigramme', 'country_trigramme_eng'] }],
+    //indexes: [{ unique: true, fields: ['country_id', 'country_trigramme', 'country_trigramme_eng'] }],
     sequelize, // We need to pass the connection instance
     modelName: 'Country' // We need to choose the model name
 });

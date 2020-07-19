@@ -102,4 +102,4 @@ async function createSeeds() {
     });
 }
 
-module.exports = createSeeds();
+module.exports =  { createSeeds };
