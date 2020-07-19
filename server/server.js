@@ -5,12 +5,15 @@ const dbConnection = require('./dbConnection');
 const cors = require('cors');
 const util = require('util');
 const loadModels = require('./dbUtils/loadModels');
+const loadRoutes = require('./routes/loadroutes');
+const routesUtils = require('./routes/routesUtils');
 
 class Server {
     constructor() {
         this.express = express();
         this.middleware();
         this.connectDB();
+        this.routes();
     }
 
     start() {
@@ -40,6 +43,11 @@ class Server {
             })
         );
     }
+    routes() {
+        this.express.use('/api/token', loadRoutes.AuthentificationRouter);
+        this.express.use(routesUtils.checkAuthorization);
+        this.express.use('/api/users-common', loadRoutes.UserCommonRouter);
+    }
     connectDB() {
         let trials = 0;
         console.log(dbConnection.authenticate())
@@ -47,9 +55,10 @@ class Server {
             dbConnection.authenticate()
                 .then(() => {
                     console.log("connected");
+                    this.doesTableExists();
                 }).catch(err => {
                     console.log(`Error log : ${err}`);
-                    if(trials < 3) {
+                    if (trials < 3) {
                         console.log('Failed to connect, retrying');
                         setTimeout(connectWithRetry, 2000);
                     } else {
@@ -59,7 +68,21 @@ class Server {
                 });
         };
         connectWithRetry();
-        dbConnection.sync({force: true});
+    }
+
+    async doesTableExists() {
+        try {
+            await dbConnection.query('select * from User')
+                .then(res => {
+                    try {
+                        loadModels;
+                    } catch (error) {
+                        dbConnection.sync({ force: true });
+                    }
+                });
+        } catch (err) {
+            console.log(`Error while checking if tables exist : ${err}`);
+        }
     }
 }
 
