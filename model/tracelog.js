@@ -1,5 +1,5 @@
 const { DataTypes, Model, Deferrable } = require('sequelize');
-const sequelize = require('../server/dbConnection');
+const sequelize = require('../server/utils/dbConnection');
 const User = require('./user');
 
 class Trace_Log extends Model { }
@@ -35,7 +35,7 @@ Trace_Log.init({
         type: DataTypes.BOOLEAN,
         allowNull: false,
         defaultValue: '0',
-    }, 
+    },
     tracelog_register_date: {
         type: DataTypes.DATE,
         allowNull: false,

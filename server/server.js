@@ -1,12 +1,13 @@
 const http = require('http');
 const express = require('express');
 const bodyparser = require('body-parser');
-const dbConnection = require('./dbConnection');
+const dbConnection = require('./utils/dbConnection');
 const cors = require('cors');
 const util = require('util');
-const loadModels = require('./dbUtils/loadModels');
-const loadRoutes = require('./routes/loadroutes');
-const routesUtils = require('./routes/routesUtils');
+const loadModels = require('./utils/loadModels');
+const loadRoutes = require('./utils/loadroutes');
+const routesUtils = require('./utils/routesUtils');
+const createSeeds = require('./utils/seeds');
 
 class Server {
     constructor() {
@@ -43,11 +44,13 @@ class Server {
             })
         );
     }
+
     routes() {
         this.express.use('/api/token', loadRoutes.AuthentificationRouter);
         this.express.use(routesUtils.checkAuthorization);
         this.express.use('/api/users-common', loadRoutes.UserCommonRouter);
     }
+
     connectDB() {
         let trials = 0;
         console.log(dbConnection.authenticate())
@@ -73,10 +76,21 @@ class Server {
     async doesTableExists() {
         try {
             await dbConnection.query('select * from User')
-                .then(res => {
+                .then(async res => {
                     try {
                         loadModels;
+                        await loadModels.User.findByPk(1)
+                            .then(async res => {
+                                console.log(res);
+                                if (res === null || res === undefined) {
+                                    // Crée de fausses données
+                                    await createSeeds;
+                                }
+                            }).catch(err => {
+                                console.log(err);
+                            })
                     } catch (error) {
+                        // Reset complètement la base de données en drop tables, puis les recrées
                         dbConnection.sync({ force: true });
                     }
                 });

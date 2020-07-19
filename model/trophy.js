@@ -1,6 +1,6 @@
 const { DataTypes, Model } = require('sequelize');
-const sequelize = require('../server/dbConnection');
-const { databaseVersion } = require('../server/dbConnection');
+const sequelize = require('../server/utils/dbConnection');
+const { databaseVersion } = require('../server/utils/dbConnection');
 
 class Trophy extends Model { }
 

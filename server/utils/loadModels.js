@@ -15,6 +15,8 @@ const Messenger = require('../../model/messenger');
 const Room = require('../../model/room');
 const Practise = require('../../model/practise');
 
-module.exports = { Country, Enum_Rank, Group_school, School, Grade, 
-    Profile, Discipline, Item, Trophy, Character, User, Career, 
-    Trace_Log, Messenger, Room, Practise };
+module.exports = {
+    Country, Enum_Rank, Group_school, School, Grade,
+    Profile, Discipline, Item, Trophy, Character, User, Career,
+    Trace_Log, Messenger, Room, Practise
+};

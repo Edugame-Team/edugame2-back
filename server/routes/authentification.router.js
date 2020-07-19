@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var jwt = require('jsonwebtoken');
 
-router.post('/getToken', function(req, res, next) {
+router.post('/getToken', function (req, res, next) {
     const pseudo = req.body.pseudo;
     const password = req.body.password;
     console.log(req.body);

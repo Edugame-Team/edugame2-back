@@ -1,5 +1,5 @@
 const { DataTypes, Model, Deferrable } = require('sequelize');
-const sequelize = require('../server/dbConnection');
+const sequelize = require('../server/utils/dbConnection');
 
 class Room extends Model { }
 

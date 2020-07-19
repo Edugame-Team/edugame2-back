@@ -1,5 +1,5 @@
 const { DataTypes, Model, Deferrable } = require('sequelize');
-const sequelize = require('../server/dbConnection');
+const sequelize = require('../server/utils/dbConnection');
 const Group_School = require('./group_School');
 
 class School extends Model { }

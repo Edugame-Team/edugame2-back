@@ -1,5 +1,5 @@
 const { DataTypes, Model, Deferrable } = require('sequelize');
-const sequelize = require('../server/dbConnection');
+const sequelize = require('../server/utils/dbConnection');
 const Country = require('./country');
 
 class Enum_Rank extends Model { }
