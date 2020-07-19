@@ -17,7 +17,9 @@
     "watch": [
       "server",
       "server/*.js",
-      "server/**/*.js"
+      "server/**/*.js",
+      "model",
+      "model/*.js"
     ],
     "exec": "yarn start",
     "ext": "js"

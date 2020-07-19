@@ -1,6 +1,5 @@
 const sequelize = require('sequelize');
 const config = require('../config/config.json');
-const util = require('util');
 
 const dbConnection = new sequelize.Sequelize(
     config.development.database,
@@ -12,6 +11,4 @@ const dbConnection = new sequelize.Sequelize(
     }
 );
 
-console.log(`Db from dbConnection.js = ${util.inspect(dbConnection, true, null, true)}`);
-
-module.export = { dbConnection };
+module.exports = dbConnection;

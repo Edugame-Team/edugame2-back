@@ -4,6 +4,7 @@ const bodyparser = require('body-parser');
 const dbConnection = require('./dbConnection');
 const cors = require('cors');
 const util = require('util');
+const loadModels = require('./dbUtils/loadModels');
 
 class Server {
     constructor() {
@@ -41,9 +42,9 @@ class Server {
     }
     connectDB() {
         let trials = 0;
-        console.log(`Db connection from serverjs = ${util.inspect(dbConnection, true, null, true)}`)
+        console.log(dbConnection.authenticate())
         const connectWithRetry = () => {
-            dbConnection.sequelize.authentificate()
+            dbConnection.authenticate()
                 .then(() => {
                     console.log("connected");
                 }).catch(err => {
@@ -58,8 +59,8 @@ class Server {
                 });
         };
         connectWithRetry();
+        dbConnection.sync({force: true});
     }
-
 }
 
 module.exports = { Server }
