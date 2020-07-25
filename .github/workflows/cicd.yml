@@ -28,7 +28,7 @@ jobs:
           host: $SSH_HOST_PREPROD
           username: $SSH_USERNAME_PREPROD
           password: $SSH_PASSWORD_PREPROD
-          port: $SSH_PORT_PREPROD
+          port: ${{ secrets.SSH_PORT_PREPROD }}
           script: cd $PATH_PROJECT_PREPROD & git clone $PROJECT_URL & cd edugame2-back & git checkout develop
       - name: executing remote script -> Prod
         if: github.ref == 'refs/heads/master'
@@ -37,5 +37,5 @@ jobs:
           host: $SSH_HOST_PROD
           username: $SSH_USERNAME_PROD
           password: $SSH_PASSWORD_PROD
-          port: $SSH_PORT_PROD
+          port: ${{ secrets.SSH_PORT_PROD }}
           script: cd $PATH_PROJECT_PROD & git clone $PROJECT_URL & cd edugame2-back & git checkout master
