@@ -27,7 +27,7 @@ Backend du projet Edugame2
 
 ## Description
 
-[todo]
+C'est un back-end permettant à l'application web d'interagir avec une API. Cette API est en mesure de de faire du traitement de données et de communiquer avec la base de données.
 
 ## Prérequis
 
