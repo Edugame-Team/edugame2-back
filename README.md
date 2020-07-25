@@ -90,7 +90,7 @@ Permission                  | Members | Admin  | Owner
 ----------------------------|:-------:|:------:|:------:
 Voir les Issues             |    ✔    |   ✔    |   ✔   |
 Gérer les issues            |    ✔    |   ✔    |   ✔   |
-Effacer une issue           |    ⨯    |   ⨯    |   ✔   |
+Effacer une issue           |    ⨯    |   ✔    |   ✔   |
 Lire le wiki                |    ✔    |   ✔    |   ✔   |
 Editer le wiki              |    ✔    |   ✔    |   ✔   |
 Commenter                   |    ✔    |   ✔    |   ✔   |
@@ -132,8 +132,10 @@ Créer un environment        |    ⨯    |   ✔    |   ✔   |
 
 ## Auteurs
 
-[todo]
+- Fahim Benchaabane <fahim.benchaabane@epitech.eu>
+- Arnaud Heymans <arnaud.heymans@epitech.eu>
+- Thomas Lopez <thomas.lopez@epitech.eu>
 
 ## Licence
+[![License](https://img.shields.io/badge/License-Apache%202.0-green.svg)](https://opensource.org/licenses/Apache-2.0)
 
-[todo]
