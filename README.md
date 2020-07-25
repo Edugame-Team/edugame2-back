@@ -11,15 +11,19 @@ Backend du projet Edugame2
 
 ## Sommaire
 
-- Description
-- Prérequis
-- Installation (avec docker)
-- Installation (sans docker)
-- Les issues
-- Agile
-- Les permissions
-- Auteurs
-- Licence
+- [Description](#description)
+- [Prérequis](#prérequis)
+- [Installation (avec docker)](#installation-avec-docker)
+- [Installation (sans docker)](#installation-sans-docker)
+- [Les issues](#les-issues)
+- [Agile](#agile)
+- [Les permissions](#les-permissions)
+- [Intégration continue](#intégration-continue)
+- [FAQ](#FAQ)
+- [Liens](#liens)
+- [Glossaire](#glossaire)
+- [Auteurs](#auteurs)
+- [Licence](#licence)
 
 ## Description
 
@@ -96,16 +100,13 @@ Configurer les hooks        |    ⨯    |   ✔    |   ✔   |
 Voir les environments       |    ⨯    |   ✔    |   ✔   |
 Créer un environment        |    ⨯    |   ✔    |   ✔   |
 
-## Gestion du projet
-
-[todo]
-
 ## Intégration continue
 
 [todo]
 
-
 ## FAQ
+
+[todo]
 
 ## Liens
 
@@ -122,3 +123,11 @@ Créer un environment        |    ⨯    |   ✔    |   ✔   |
  - **origin** : GIT étant décentralisé, `origin` est le nom conventionnel du serveur par défaut
  - **upstream** : Lorsque l'on copie (fork) un projet, `upstream` représente le repository d'origine par convention
  - **fourcher/forker** : copier intégralement un repository
+
+## Auteurs
+
+[todo]
+
+## Licence
+
+[todo]
