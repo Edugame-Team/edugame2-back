@@ -9,15 +9,6 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     env:
-      SSH_HOST_PROD: ${{ secrets.SSH_HOST_PROD }}
-      SSH_USER_PROD: ${{ secrets.SSH_USERNAME_PROD }}
-      SSH_PASSWORD_PROD: ${{ secrets.SSH_PASSWORD_PROD }}
-      SSH_PORT_PROD: ${{ secrets.SSH_PORT_PROD }}
-      SSH_HOST_PREPROD: ${{ secrets.SSH_HOST_PREPROD }}
-      SSH_USER_PREPROD: ${{ secrets.SSH_USERNAME_PREPROD }}
-      SSH_PASSWORD_PREPROD: ${{ secrets.SSH_PASSWORD_PREPROD }}
-      SSH_PORT_PREPROD: ${{ secrets.SSH_PORT_PREPROD }}
-      PATH_PROJECT_PROD: ${{ secrets.PATH_PROJECT_PROD }}
       PATH_PROJECT_PREPROD: ${{ secrets.PATH_PROJECT_PREPROD }}
       PROJECT_URL: https://github.com/Edugame-Team/edugame2-back
     steps:
@@ -25,17 +16,17 @@ jobs:
         if: github.ref == 'refs/heads/develop'
         uses: appleboy/ssh-action@master
         with:
-          host: $SSH_HOST_PREPROD
-          username: $SSH_USERNAME_PREPROD
-          password: $SSH_PASSWORD_PREPROD
+          host: ${{ secrets.SSH_HOST_PREPROD }}
+          username: ${{ secrets.SSH_USERNAME_PREPROD }}
+          password: ${{ secrets.SSH_PASSWORD_PREPROD }}
           port: ${{ secrets.SSH_PORT_PREPROD }}
           script: cd $PATH_PROJECT_PREPROD & git clone $PROJECT_URL & cd edugame2-back & git checkout develop
       - name: executing remote script -> Prod
         if: github.ref == 'refs/heads/master'
         uses: appleboy/ssh-action@master
         with:
-          host: $SSH_HOST_PROD
-          username: $SSH_USERNAME_PROD
-          password: $SSH_PASSWORD_PROD
+          host: ${{ secrets.SSH_HOST_PROD }}
+          username: ${{ secrets.SSH_USERNAME_PROD }}
+          password: ${{ secrets.SSH_PASSWORD_PROD }}
           port: ${{ secrets.SSH_PORT_PROD }}
           script: cd $PATH_PROJECT_PROD & git clone $PROJECT_URL & cd edugame2-back & git checkout master
