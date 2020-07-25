@@ -20,7 +20,11 @@ jobs:
           username: ${{ secrets.SSH_USERNAME_PREPROD }}
           password: ${{ secrets.SSH_PASSWORD_PREPROD }}
           port: ${{ secrets.SSH_PORT_PREPROD }}
-          script: ls
+          script: |
+            cd /var/www/edugame/preprod
+            git clone https://github.com/Edugame-Team/edugame2-back
+            cd edugame2-back
+            git checkout develop
       - name: executing remote script -> Prod
         if: github.ref == 'refs/heads/master'
         uses: appleboy/ssh-action@master
@@ -29,4 +33,8 @@ jobs:
           username: ${{ secrets.SSH_USERNAME_PROD }}
           password: ${{ secrets.SSH_PASSWORD_PROD }}
           port: ${{ secrets.SSH_PORT_PROD }}
-          script: ls
+          script: |
+            cd /var/www/edugame/prod
+            git clone https://github.com/Edugame-Team/edugame2-back
+            cd edugame2-back
+            git checkout master
