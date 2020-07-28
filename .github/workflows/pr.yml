@@ -1,7 +1,8 @@
-name: PR-preprod
+name: PR
 on:
   pull_request:
     branches:
+      - master
       - develop
 jobs:
   build:

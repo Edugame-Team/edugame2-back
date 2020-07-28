@@ -25,6 +25,9 @@ jobs:
             git clone https://github.com/Edugame-Team/edugame2-back
             cd edugame2-back
             git checkout develop
+            git pull
+            docker-compose up -d --build db
+            docker-compose -p edugame_back_dev up -d --build api
       - name: executing remote script -> Prod
         if: github.ref == 'refs/heads/master'
         uses: appleboy/ssh-action@master
@@ -38,3 +41,6 @@ jobs:
             git clone https://github.com/Edugame-Team/edugame2-back
             cd edugame2-back
             git checkout master
+            git pull
+            docker-compose up -d --build db
+            docker-compose -p edugame_back_main up -d --build api
