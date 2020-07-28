@@ -13,13 +13,9 @@ services:
     volumes:
       - database-data:/var/lib/postgresql/data/
   api:
-    container_name: edugame_api
-    image: edugame_api
     build: .
     ports:
-      - "3000:3000"
-    depends_on:
-      - db
+      - "3000"
 
 volumes:
   database-data:

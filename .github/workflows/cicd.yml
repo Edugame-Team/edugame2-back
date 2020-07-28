@@ -1,0 +1,46 @@
+name: CICD
+on:
+  push:
+    branches:
+      - master
+      - develop
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    env:
+      PATH_PROJECT_PREPROD: ${{ secrets.PATH_PROJECT_PREPROD }}
+      PROJECT_URL: https://github.com/Edugame-Team/edugame2-back
+    steps:
+      - name: executing remote script -> Preprod
+        if: github.ref == 'refs/heads/develop'
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST_PREPROD }}
+          username: ${{ secrets.SSH_USERNAME_PREPROD }}
+          password: ${{ secrets.SSH_PASSWORD_PREPROD }}
+          port: ${{ secrets.SSH_PORT_PREPROD }}
+          script: |
+            cd /var/www/edugame/preprod
+            git clone https://github.com/Edugame-Team/edugame2-back
+            cd edugame2-back
+            git checkout develop
+            git pull
+            docker-compose up -d --build db
+            docker-compose -p edugame_back_dev up -d --build api
+      - name: executing remote script -> Prod
+        if: github.ref == 'refs/heads/master'
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST_PROD }}
+          username: ${{ secrets.SSH_USERNAME_PROD }}
+          password: ${{ secrets.SSH_PASSWORD_PROD }}
+          port: ${{ secrets.SSH_PORT_PROD }}
+          script: |
+            cd /var/www/edugame/prod
+            git clone https://github.com/Edugame-Team/edugame2-back
+            cd edugame2-back
+            git checkout master
+            git pull
+            docker-compose up -d --build db
+            docker-compose -p edugame_back_main up -d --build api

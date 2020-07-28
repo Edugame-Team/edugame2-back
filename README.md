@@ -27,19 +27,24 @@ Backend du projet Edugame2
 
 ## Description
 
-[todo]
+C'est un back-end permettant à l'application web d'interagir avec une API. Cette API est en mesure de de faire du traitement de données et de communiquer avec la base de données.
 
 ## Prérequis
 
-[todo]
+ - [Node.js](https://nodejs.org/en/) est nécessaire si le projet est lancé sans docker.
+ - [Yarn](https://classic.yarnpkg.com/fr/docs/install/#windows-stable) est le gestionnaire de dépendances utilisé dans ce projet. Son installation est requise afin de le lancer sans docker.
+ - [PgAdmin](https://www.pgadmin.org/download/) est un outil de gestion de base de données. Il est nécessaire pour ce projet si n'utilisez pas docker de créer une base de données via PgAdmin du nom indiqué dans la config (Ou le nom de votre choix en changeant les paramètres du fichier de configuration dans config/config.json).
+ - [Docker](https://docs.docker.com/get-docker/) Docker pour lancer le projet (Un dockerfile + docker-compose sont disponibles).
 
 ## Installation (avec docker)
 
-[todo]
+ - **docker-compose up** en étant dans le dossier du projet. L'application sera disponible sur le port 3000. Il créera une base de données Postgresql ainsi que les tables associés au projet.
 
 ## Installation (sans docker)
 
-[todo]
+ - **yarn install** afin d'installer les dépendances nécessaires du projet.
+ - **yarn start** pour lancer l'application.
+ - **yarn start:watch** pour lancer l'application en mode dev (nodemon actif).
 
 ## Les issues
 
@@ -84,7 +89,7 @@ Permission                  | Members | Admin  | Owner
 ----------------------------|:-------:|:------:|:------:
 Voir les Issues             |    ✔    |   ✔    |   ✔   |
 Gérer les issues            |    ✔    |   ✔    |   ✔   |
-Effacer une issue           |    ⨯    |   ⨯    |   ✔   |
+Effacer une issue           |    ⨯    |   ✔    |   ✔   |
 Lire le wiki                |    ✔    |   ✔    |   ✔   |
 Editer le wiki              |    ✔    |   ✔    |   ✔   |
 Commenter                   |    ✔    |   ✔    |   ✔   |
@@ -126,8 +131,10 @@ Créer un environment        |    ⨯    |   ✔    |   ✔   |
 
 ## Auteurs
 
-[todo]
+- Fahim Benchaabane <fahim.benchaabane@epitech.eu>
+- Arnaud Heymans <arnaud.heymans@epitech.eu>
+- Thomas Lopez <thomas.lopez@epitech.eu>
 
 ## Licence
+[![License](https://img.shields.io/badge/License-Apache%202.0-green.svg)](https://opensource.org/licenses/Apache-2.0)
 
-[todo]
