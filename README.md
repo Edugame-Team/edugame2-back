@@ -45,6 +45,10 @@ C'est un back-end permettant à l'application web d'interagir avec une API. Cett
 - Arnaud Heymans <arnaud.heymans@epitech.eu>
 - Thomas Lopez <thomas.lopez@epitech.eu>
 
+## Contribuer
+
+[![](http://img.shields.io/badge/CONTRIBUTING-Guidelines-blue.svg)](/CONTRIBUTING.md)
+
 ## Licence
 [![License](https://img.shields.io/badge/License-Apache%202.0-green.svg)](https://opensource.org/licenses/Apache-2.0)
 
