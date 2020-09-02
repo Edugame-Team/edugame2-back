@@ -2,12 +2,14 @@ const http = require('http');
 const express = require('express');
 const bodyparser = require('body-parser');
 const cors = require('cors');
+const swaggerUi = require('swagger-ui-express');
 const dbConnection = require('./utils/dbConnection');
 // const util = require('util');
 const loadModels = require('./utils/loadModels');
 const loadRoutes = require('./utils/loadroutes');
 const routesUtils = require('./utils/routesUtils');
 const createSeeds = require('./utils/seeds');
+const swaggerDocument = require('../swagger.json');
 
 class Server {
   constructor() {
@@ -46,9 +48,9 @@ class Server {
   }
 
   routes() {
-    this.express.use('/api/token', loadRoutes.AuthentificationRouter);
-    this.express.use(routesUtils.checkAuthorization);
-    this.express.use('/api/users-common', loadRoutes.UserCommonRouter);
+    this.express.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+    this.express.use('/api/token', routesUtils.checkAuthorization, loadRoutes.AuthentificationRouter);
+    this.express.use('/api/users-common', routesUtils.checkAuthorization, loadRoutes.UserCommonRouter);
   }
 
   connectDB() {
@@ -74,15 +76,16 @@ class Server {
     connectWithRetry();
   }
 
+  // eslint-disable-next-line class-methods-use-this
   async doesTableExists() {
     try {
-      await this.dbConnection.query('select * from User')
+      await dbConnection.query('select * from User')
         .then(async () => {
           try {
-            loadModels();
+            // eslint-disable-next-line no-unused-expressions
+            loadModels;
             await loadModels.User.findByPk(1)
               .then(async (res) => {
-                console.log(res);
                 if (res === null || res === undefined) {
                   // Crée de fausses données
                   console.log('Création data');
@@ -95,13 +98,14 @@ class Server {
               });
           } catch (error) {
             // Reset complètement la base de données en drop tables, puis les recrées
+            console.log(`Error while checking if User exist : ${error}`);
             dbConnection.sync({ force: true });
           }
         });
     } catch (err) {
+      console.log(`Error while checking if tables exist : ${err}`);
       await dbConnection.sync({ force: true });
       await createSeeds.createSeeds();
-      console.log(`Error while checking if tables exist : ${err}`);
     }
   }
 }
