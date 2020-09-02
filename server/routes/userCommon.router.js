@@ -1,8 +1,9 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
 
-router.get('/one', function (req, res, next) {
-    res.send('hello with token');
+const router = express.Router();
+
+router.get('/one', (req, res) => {
+  res.send('hello with token');
 });
 
 module.exports = router;
