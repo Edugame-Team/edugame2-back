@@ -1,5 +1,3 @@
-/* eslint-disable camelcase */
-/* eslint-disable no-unused-vars */
 const loadModels = require('./loadModels');
 
 async function createSeeds() {
@@ -8,7 +6,7 @@ async function createSeeds() {
     country_trigramme_eng: 'FRA',
   });
 
-  const enum_rank = await loadModels.Enum_Rank.bulkCreate([
+  await loadModels.EnumRank.bulkCreate([
     {
       enum_rank_name: '1',
       country_id: country.country_id,
@@ -27,22 +25,22 @@ async function createSeeds() {
     },
   ]);
 
-  const group_school = await loadModels.Group_school.create({
+  const groupSchool = await loadModels.GroupSchool.create({
     group_school_name: 'TLS13',
   });
 
-  const school = await loadModels.School.bulkCreate([
+  await loadModels.School.bulkCreate([
     {
       school_name: 'Lycée Colbert',
-      group_school_id: group_school.group_school_id,
+      group_school_id: groupSchool.group_school_id,
     },
     {
       school_name: 'Collège Colbert',
-      group_school_id: group_school.group_school_id,
+      group_school_id: groupSchool.group_school_id,
     },
   ]);
 
-  const grade = await loadModels.Grade.bulkCreate([
+  await loadModels.Grade.bulkCreate([
     {
       grade_name: 'CE1',
       enum_rank_id: 1,
@@ -73,7 +71,7 @@ async function createSeeds() {
     trophy_img: 'img',
   });
 
-  const item = await loadModels.Item.create({
+  await loadModels.Item.create({
     item_name: 'SuperItem',
     item_type: 'Covers ALL test',
   });
@@ -90,7 +88,7 @@ async function createSeeds() {
     character_trophy: trophy.trophy_id,
   });
 
-  const user = await loadModels.User.create({
+  await loadModels.User.create({
     user_username: 'El_Thomato',
     user_parents_mail: 'ElLopozoPortougal@brazzers.com',
     user_password: 'password',
