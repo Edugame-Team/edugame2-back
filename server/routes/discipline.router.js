@@ -5,11 +5,11 @@ const asyncMiddleware = require('../utils/asyncMiddleware');
 const router = express.Router();
 
 router.get('/byId/:id', asyncMiddleware(async (req, res) => {
-  const oneUser = await model.User.findByPk(req.params.id);
-  if (oneUser !== null) {
+  const oneDiscipline = await model.Discipline.findByPk(req.params.id);
+  if (oneDiscipline !== null) {
     res.status(200).send({
       success: true,
-      data: [oneUser],
+      data: [oneDiscipline],
     });
   } else {
     res.status(200).send({
@@ -20,12 +20,11 @@ router.get('/byId/:id', asyncMiddleware(async (req, res) => {
 }));
 
 router.get('/', asyncMiddleware(async (req, res) => {
-  const users = await model.User.findAll();
-  console.log(users);
-  if (users !== null) {
+  const disciplines = await model.Discipline.findAll();
+  if (disciplines !== null) {
     res.status(200).send({
       success: true,
-      data: [users],
+      data: [disciplines],
     });
   } else {
     res.status(200).send({
@@ -36,15 +35,15 @@ router.get('/', asyncMiddleware(async (req, res) => {
 }));
 
 router.put('/', asyncMiddleware(async (req, res) => {
-  await model.User.update(
+  await model.Discipline.update(
     req.body.data,
-    { where: { user_id: req.body.data.user_id } },
+    { where: { discipline_id: req.body.data.discipline_id } },
   )
     .then(async () => {
-      const userUpdated = await model.User.findByPk(req.body.data.user_id);
+      const disciplineUpdated = await model.Discipline.findByPk(req.body.data.discipline_id);
       res.status(200).send({
         success: true,
-        data: [userUpdated],
+        data: [disciplineUpdated],
       });
     })
     .catch((err) => res.status(200).send({
@@ -54,8 +53,8 @@ router.put('/', asyncMiddleware(async (req, res) => {
 }));
 
 router.delete('/:id', asyncMiddleware(async (req, res) => {
-  await model.User.destroy({
-    where: { user_id: req.params.id },
+  await model.Discipline.destroy({
+    where: { discipline_id: req.params.id },
   })
     .then(async (result) => res.status(200).send({
       success: true,

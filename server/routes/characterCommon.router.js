@@ -5,11 +5,11 @@ const asyncMiddleware = require('../utils/asyncMiddleware');
 const router = express.Router();
 
 router.get('/byId/:id', asyncMiddleware(async (req, res) => {
-  const oneUser = await model.User.findByPk(req.params.id);
-  if (oneUser !== null) {
+  const oneCharacter = await model.Character.findByPk(req.params.id);
+  if (oneCharacter !== null) {
     res.status(200).send({
       success: true,
-      data: [oneUser],
+      data: [oneCharacter],
     });
   } else {
     res.status(200).send({
@@ -20,12 +20,11 @@ router.get('/byId/:id', asyncMiddleware(async (req, res) => {
 }));
 
 router.get('/', asyncMiddleware(async (req, res) => {
-  const users = await model.User.findAll();
-  console.log(users);
-  if (users !== null) {
+  const characters = await model.Character.findAll();
+  if (characters !== null) {
     res.status(200).send({
       success: true,
-      data: [users],
+      data: [characters],
     });
   } else {
     res.status(200).send({
@@ -36,15 +35,15 @@ router.get('/', asyncMiddleware(async (req, res) => {
 }));
 
 router.put('/', asyncMiddleware(async (req, res) => {
-  await model.User.update(
+  await model.Character.update(
     req.body.data,
-    { where: { user_id: req.body.data.user_id } },
+    { where: { character_id: req.body.data.character_id } },
   )
     .then(async () => {
-      const userUpdated = await model.User.findByPk(req.body.data.user_id);
+      const CharacterUpdated = await model.Character.findByPk(req.body.data.character_id);
       res.status(200).send({
         success: true,
-        data: [userUpdated],
+        data: [CharacterUpdated],
       });
     })
     .catch((err) => res.status(200).send({
@@ -54,8 +53,8 @@ router.put('/', asyncMiddleware(async (req, res) => {
 }));
 
 router.delete('/:id', asyncMiddleware(async (req, res) => {
-  await model.User.destroy({
-    where: { user_id: req.params.id },
+  await model.Character.destroy({
+    where: { character_id: req.params.id },
   })
     .then(async (result) => res.status(200).send({
       success: true,

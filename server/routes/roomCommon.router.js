@@ -5,11 +5,11 @@ const asyncMiddleware = require('../utils/asyncMiddleware');
 const router = express.Router();
 
 router.get('/byId/:id', asyncMiddleware(async (req, res) => {
-  const oneUser = await model.User.findByPk(req.params.id);
-  if (oneUser !== null) {
+  const oneRoom = await model.Room.findByPk(req.params.id);
+  if (oneRoom !== null) {
     res.status(200).send({
       success: true,
-      data: [oneUser],
+      data: [oneRoom],
     });
   } else {
     res.status(200).send({
@@ -20,12 +20,11 @@ router.get('/byId/:id', asyncMiddleware(async (req, res) => {
 }));
 
 router.get('/', asyncMiddleware(async (req, res) => {
-  const users = await model.User.findAll();
-  console.log(users);
-  if (users !== null) {
+  const rooms = await model.Room.findAll();
+  if (rooms !== null) {
     res.status(200).send({
       success: true,
-      data: [users],
+      data: [rooms],
     });
   } else {
     res.status(200).send({
@@ -36,15 +35,15 @@ router.get('/', asyncMiddleware(async (req, res) => {
 }));
 
 router.put('/', asyncMiddleware(async (req, res) => {
-  await model.User.update(
+  await model.Room.update(
     req.body.data,
-    { where: { user_id: req.body.data.user_id } },
+    { where: { room_id: req.body.data.room_id } },
   )
     .then(async () => {
-      const userUpdated = await model.User.findByPk(req.body.data.user_id);
+      const roomUpdated = await model.Room.findByPk(req.body.data.room_id);
       res.status(200).send({
         success: true,
-        data: [userUpdated],
+        data: [roomUpdated],
       });
     })
     .catch((err) => res.status(200).send({
@@ -54,8 +53,8 @@ router.put('/', asyncMiddleware(async (req, res) => {
 }));
 
 router.delete('/:id', asyncMiddleware(async (req, res) => {
-  await model.User.destroy({
-    where: { user_id: req.params.id },
+  await model.Room.destroy({
+    where: { room_id: req.params.id },
   })
     .then(async (result) => res.status(200).send({
       success: true,

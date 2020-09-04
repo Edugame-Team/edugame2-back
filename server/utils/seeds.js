@@ -100,6 +100,19 @@ async function createSeeds() {
     profile_id: profile.profile_id,
     character_id: character.character_id,
   });
+
+  await loadModels.User.create({
+    user_username: 'El_Fahimo',
+    user_parents_mail: 'El_Fahimo@brazzers.com',
+    user_password: 'password',
+    user_firstname: 'Fahim',
+    user_lastname: 'yes',
+    user_active: 1,
+    user_params: '',
+    grade_id: 1,
+    profile_id: profile.profile_id,
+    character_id: character.character_id,
+  });
 }
 
 module.exports = { createSeeds };
