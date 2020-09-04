@@ -49,8 +49,9 @@ class Server {
 
   routes() {
     this.express.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+    this.express.use('/api/career-common', loadRoutes.CareerCommonRouter);
     this.express.use('/api/token', routesUtils.checkAuthorization, loadRoutes.AuthentificationRouter);
-    this.express.use('/api/users-common', routesUtils.checkAuthorization, loadRoutes.UserCommonRouter);
+    this.express.use('/api/users-common', loadRoutes.UserCommonRouter);
   }
 
   connectDB() {

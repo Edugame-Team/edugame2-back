@@ -16,5 +16,13 @@
     },
     "rules": {
         "no-console": "off"
-    }
+    },
+    "overrides": [
+        {
+          "files": ["*-test.js","*.spec.js", "__tests__/*.spec.js"],
+          "rules": {
+            "no-unused-expressions": "off"
+          }
+        }
+    ]
 }
