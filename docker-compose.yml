@@ -12,12 +12,13 @@ services:
       - "${DB_PORT}:${DB_PORT}"
     volumes:
       - database-data:/var/lib/postgresql/data/
-    network_mode: "host"
+    network_mode: host
   api:
-    build: .
+    build:
+      network: host
+      context: .
     ports:
       - "3000"
-    network_mode: "host"
 
 volumes:
   database-data:
