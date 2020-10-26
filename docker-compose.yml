@@ -3,7 +3,7 @@ version: "3"
 services:
   db:
     image: postgres
-    container_name: edugame_db
+    #container_name: edugame_db
     environment:
       POSTGRES_USER: ${DB_USERNAME}
       POSTGRES_PASSWORD: ${DB_PASSWORD}
