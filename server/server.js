@@ -94,7 +94,7 @@ class Server {
                 } else {
                   console.log('ok');
                 }
-              }).catch((err) => {
+              }).catch(async (err) => {
                 console.log(err);
                 dbConnection.sync({ force: true });
                 await createSeeds.createSeeds();
