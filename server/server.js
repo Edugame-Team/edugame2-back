@@ -64,7 +64,7 @@ class Server {
           this.doesTableExists();
         }).catch((err) => {
           console.log(`Error log : ${err}`);
-          if (trials < 3) {
+          if (trials < 10) {
             console.log('Failed to connect, retrying');
             trials += 1;
             setTimeout(connectWithRetry, 2000);
