@@ -17,7 +17,7 @@ jobs:
         uses: appleboy/ssh-action@master
         env:
           DB_USERNAME: ${{ secrets.DEV_DB_USERNAME }}
-          DB_PASSWORD: ${{ secrets.DEV_DB_USERNAME }}
+          DB_PASSWORD: ${{ secrets.DEV_DB_PASSWORD }}
           DB_DATABASE: ${{ secrets.DEV_DB_DATABASE }}
           DB_HOST: ${{ secrets.DEV_DB_HOST }}
           DB_DIALECT: ${{ secrets.DEV_DB_DIALECT }}

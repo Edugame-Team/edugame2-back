@@ -13,13 +13,9 @@ services:
     volumes:
       - database-data:/var/lib/postgresql/data/
   api:
-    build:
-      context: .
+    build: .
     ports:
       - "3000"
 
 volumes:
   database-data:
-
-networks:
-  back:
