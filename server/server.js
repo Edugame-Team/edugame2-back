@@ -96,6 +96,8 @@ class Server {
                 }
               }).catch((err) => {
                 console.log(err);
+                dbConnection.sync({ force: true });
+                await createSeeds.createSeeds();
               });
           } catch (error) {
             // Reset complètement la base de données en drop tables, puis les recrées
