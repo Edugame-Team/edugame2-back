@@ -12,16 +12,14 @@ services:
       - "${DB_PORT}:${DB_PORT}"
     volumes:
       - database-data:/var/lib/postgresql/data/
-    networks:
-      - edugame
   api:
     build:
       context: .
-      network: edugame
     ports:
       - "3000"
+
 volumes:
   database-data:
 
 networks:
-  edugame:
+  default:
