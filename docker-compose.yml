@@ -8,6 +8,8 @@ services:
       POSTGRES_USER: ${DB_USERNAME}
       POSTGRES_PASSWORD: ${DB_PASSWORD}
       POSTGRES_DB: ${DB_DATABASE}
+    networks:
+      - back
     ports:
       - "${DB_PORT}:${DB_PORT}"
     volumes:
@@ -17,9 +19,10 @@ services:
       context: .
     ports:
       - "3000"
-
+    networks:
+      - back
 volumes:
   database-data:
 
 networks:
-  default:
+  back:
