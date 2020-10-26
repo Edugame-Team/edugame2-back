@@ -17,10 +17,9 @@ services:
   api:
     build:
       context: .
+      network: edugame
     ports:
       - "3000"
-    networks:
-      - edugame
 volumes:
   database-data:
 
