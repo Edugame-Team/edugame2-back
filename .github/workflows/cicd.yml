@@ -41,7 +41,7 @@ jobs:
             sed -i "s/^\(DB_HOST=\)\(.*\)/\1$DB_HOST/" .env
             sed -i "s/^\(DB_DIALECT=\)\(.*\)/\1$DB_DIALECT/" .env
             sed -i "s/^\(DB_PORT=\)\(.*\)/\1$DB_PORT/" .env
-            docker-compose up -d --build db
+            docker-compose up -d --build db --no-recreate
             docker-compose -p edugame_back_dev up -d --build api
       - name: executing remote script -> Prod
         if: github.ref == 'refs/heads/master'
@@ -72,5 +72,5 @@ jobs:
             sed -i "s/^\(DB_HOST=\)\(.*\)/\1$DB_HOST/" .env
             sed -i "s/^\(DB_DIALECT=\)\(.*\)/\1$DB_DIALECT/" .env
             sed -i "s/^\(DB_PORT=\)\(.*\)/\1$DB_PORT/" .env
-            docker-compose up -d --build db
+            docker-compose up -d --build db --no-recreate
             docker-compose -p edugame_back_main up -d --build api
