@@ -70,7 +70,7 @@ class Server {
             setTimeout(connectWithRetry, 2000);
           } else {
             console.log('Failed to connect after 3 trials');
-            process.exit(-1);
+//            process.exit(-1);
           }
         });
     };
