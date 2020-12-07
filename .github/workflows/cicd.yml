@@ -15,14 +15,14 @@ jobs:
       - uses: actions/checkout@v1
         
       - name: Set db connection
-        run:  ls -la; \
-              ls -lha; \
-              cp .env.default .env; \
-              sed -i "s/^\(DB_USERNAME=\)\(.*\)/\1${{ secrets.DEV_DB_USERNAME }}/" .env; \
-              sed -i "s/^\(DB_PASSWORD=\)\(.*\)/\1${{ secrets.DEV_DB_PASSWORD }}/" .env; \
-              sed -i "s/^\(DB_DATABASE=\)\(.*\)/\1${{ secrets.DEV_DB_DATABASE }}/" .env; \
-              sed -i "s/^\(DB_HOST=\)\(.*\)/\1${{ secrets.DEV_DB_HOST }}/" .env; \
-              sed -i "s/^\(DB_DIALECT=\)\(.*\)/\1${{ secrets.DEV_DB_DIALECT }}/" .env; \
+        run:  ls -la;
+              ls -lha;
+              cp .env.default .env;
+              sed -i "s/^\(DB_USERNAME=\)\(.*\)/\1${{ secrets.DEV_DB_USERNAME }}/" .env;
+              sed -i "s/^\(DB_PASSWORD=\)\(.*\)/\1${{ secrets.DEV_DB_PASSWORD }}/" .env;
+              sed -i "s/^\(DB_DATABASE=\)\(.*\)/\1${{ secrets.DEV_DB_DATABASE }}/" .env;
+              sed -i "s/^\(DB_HOST=\)\(.*\)/\1${{ secrets.DEV_DB_HOST }}/" .env;
+              sed -i "s/^\(DB_DIALECT=\)\(.*\)/\1${{ secrets.DEV_DB_DIALECT }}/" .env;
               sed -i "s/^\(DB_PORT=\)\(.*\)/\1${{ secrets.DEV_DB_PORT }}/" .env
               
       - name: get current version
