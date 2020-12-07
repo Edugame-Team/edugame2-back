@@ -12,6 +12,8 @@ jobs:
       PATH_PROJECT_PREPROD: ${{ secrets.PATH_PROJECT_PREPROD }}
       PROJECT_URL: https://github.com/Edugame-Team/edugame2-back
     steps:
+      - uses: actions/checkout@v1
+        
       - name: get current version
         run:  ls -l
         
