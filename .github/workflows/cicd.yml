@@ -39,4 +39,7 @@ jobs:
           context: ./
           file: ./Dockerfile
           push: true
-          tags: edugame/back:latest edugame/back:staging edugame/back:staging edugame/back:${{ env.EDUGAME_PROJECT_VERSION }}
+          tags: |
+            edugame/back:latest
+            edugame/back:staging
+            edugame/back:${{ env.EDUGAME_PROJECT_VERSION }}
