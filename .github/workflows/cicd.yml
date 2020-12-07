@@ -14,11 +14,9 @@ jobs:
     steps:
       - uses: actions/checkout@v1
         
-      - name: get current version
-        run:  ls -l
-        
-      - name: Set db connection  
-        run:  sed -i "s/^\(DB_USERNAME=\)\(.*\)/\1${{ secrets.DEV_DB_USERNAME }}/" .env \
+      - name: Set db connection
+        run:  mv .env.default .env \
+              sed -i "s/^\(DB_USERNAME=\)\(.*\)/\1${{ secrets.DEV_DB_USERNAME }}/" .env \
               sed -i "s/^\(DB_PASSWORD=\)\(.*\)/\1${{ secrets.DEV_DB_PASSWORD }}/" .env \
               sed -i "s/^\(DB_DATABASE=\)\(.*\)/\1${{ secrets.DEV_DB_DATABASE }}/" .env \
               sed -i "s/^\(DB_HOST=\)\(.*\)/\1${{ secrets.DEV_DB_HOST }}/" .env \
