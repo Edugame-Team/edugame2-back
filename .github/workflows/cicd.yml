@@ -13,9 +13,7 @@ jobs:
       PROJECT_URL: https://github.com/Edugame-Team/edugame2-back
     steps:
       - uses: actions/checkout@v1
-      - uses: docker/setup-buildx-action@v1
-        with:
-          driver: docker
+        
       - name: Set up Docker Buildx
         id: buildx
         uses: docker/setup-buildx-action@v1
