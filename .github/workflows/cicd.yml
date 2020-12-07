@@ -16,7 +16,7 @@ jobs:
         
       - name: Set db connection
         run:  ls -la; \
-              mv .env.default .env; \
+              cp .env.default .env; \
               sed -i "s/^\(DB_USERNAME=\)\(.*\)/\1${{ secrets.DEV_DB_USERNAME }}/" .env; \
               sed -i "s/^\(DB_PASSWORD=\)\(.*\)/\1${{ secrets.DEV_DB_PASSWORD }}/" .env; \
               sed -i "s/^\(DB_DATABASE=\)\(.*\)/\1${{ secrets.DEV_DB_DATABASE }}/" .env; \
