@@ -2,6 +2,7 @@ const sequelize = require('sequelize');
 require('dotenv').config();
 
 console.log(process.env.DB_DATABASE);
+console.log(process.env.DB_HOST);
 
 const dbConnection = new sequelize.Sequelize(
   process.env.DB_DATABASE,
