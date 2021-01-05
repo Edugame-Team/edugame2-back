@@ -1,29 +1,16 @@
-name: Deploy on production
+name: Deploy on Production
 on:
   push:
     branches:
       - master
 jobs:
-  build:
-    name: Build
+  deploy:
+    name: Deploy on production
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-        
-      - name: Set up Docker Buildx
-        id: buildx
-        uses: docker/setup-buildx-action@v1
-        
-      - name: Set db connection
-        run:  cp .env.default .env;
-              sed -i "s/^\(DB_USERNAME=\)\(.*\)/\1${{ secrets.PROD_DB_USERNAME }}/" .env;
-              sed -i "s/^\(DB_PASSWORD=\)\(.*\)/\1${{ secrets.PROD_DB_PASSWORD }}/" .env;
-              sed -i "s/^\(DB_DATABASE=\)\(.*\)/\1${{ secrets.PROD_DB_DATABASE }}/" .env;
-              sed -i "s/^\(DB_HOST=\)\(.*\)/\1${{ secrets.PROD_DB_HOST }}/" .env;
-              sed -i "s/^\(DB_DIALECT=\)\(.*\)/\1${{ secrets.PROD_DB_DIALECT }}/" .env;
-              sed -i "s/^\(DB_PORT=\)\(.*\)/\1${{ secrets.PROD_DB_PORT }}/" .env
-              
-      - name: get current version
+
+      - name: Get current version
         run:  echo "EDUGAME_PROJECT_VERSION=$(node -p "require('./package.json').version")" >> $GITHUB_ENV
 
       - name: Login to Docker Hub
@@ -32,12 +19,11 @@ jobs:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
 
-      - name: Build and push
-        uses: docker/build-push-action@v2
-        with:
-          context: .
-          push: true
-          tags: |
-            edugame/back:latest
-            edugame/back:production
-            edugame/back:${{ env.EDUGAME_PROJECT_VERSION }}
+      - name: Pull version to push
+        run: docker pull edugame/back:${{ env.EDUGAME_PROJECT_VERSION }}
+
+      - name: Add production tag
+        run: docker tag edugame/back:${{ env.EDUGAME_PROJECT_VERSION }} edugame/back:production
+
+      - name: Push image
+        run: docker image push edugame/back:production
