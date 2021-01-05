@@ -1,6 +1,6 @@
 {
   "name": "edugame2-back",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "index.js",
   "repository": "https://github.com/Edugame-Team/edugame2-back.git",
   "author": "Barhal <yo4663@hotmail.com>",
@@ -12,7 +12,9 @@
   },
   "jest": {
     "collectCoverage": true,
-    "coverageReporters": ["html"]
+    "coverageReporters": [
+      "html"
+    ]
   },
   "nodemonConfig": {
     "ignore": [
